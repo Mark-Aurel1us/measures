@@ -15,7 +15,7 @@ y = list(map(lambda t: data[t]*dU, range(len(data)-2)))
 fig, ax = plt.subplots()
 ax.grid(True)
 ax.plot(x,y)
-ax.set(xticks = numpy.arange(len(data)-2), yticks = numpy.arange(max(data)), xlim = (0,(len(data)-2)*T), ylim = (0,dU*max(data)))
+ax.set(xticks = numpy.arange(0,len(data)-2,0.1), yticks = numpy.arange(0,max(data),0.1), xlim = (0,(len(data)-2)*T), ylim = (0,dU*max(data)))
 
 
 #plt.figure()

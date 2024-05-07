@@ -62,12 +62,15 @@ def adc():
 	setpins(leds, y)
 	return bin2dec(x)+1
 data = []
+GPIO.output(troyka,1)
 try:
 	start = 0 
 	while True:
 		x = adc()
 		if(not start):
 			start = time.time()
+		if(len(data)>100 and data[-6]>=208):
+			GPIO.output(troyka,0)	
 		data = data + [x]
 		time.sleep(0.003)
 		print(x,"  ",x/(2**dig)*U0)
@@ -77,7 +80,7 @@ except KeyboardInterrupt:
 finally:
 	end = time.time()
 	setpins(leds, dec2bin(0))
-	with open("res.txt","w") as res:
+	with open("down.txt","w") as res:
 		res.write("\n".join(list(map(lambda t: str(t),data))))
 		res.write("\n\n")
 		res.write(str(len(data)/(end-start)))
